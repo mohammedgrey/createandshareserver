@@ -2,6 +2,8 @@ const express = require('express');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
+const compression = require('compression');
+
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 const userRouter = require('./routes/userRoutes');
@@ -28,6 +30,8 @@ app.use(express.json());
 app.use(express.static(`${__dirname}/public`));
 
 // app.use(express.static(path.resolve('./public')));
+
+app.use(compression());
 
 //test middleware for development
 app.use((req, res, next) => {
